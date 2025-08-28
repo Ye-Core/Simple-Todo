@@ -63,18 +63,25 @@ const NoteList = () => {
 
   return (
     <div>
-      <h2>Note List</h2>
+      <h2 className='text-xl font-bold my-3'>Shares</h2>
       <ul>
         {
-          notes.map((note, index) => <li key={index}>
-            {note.title} <button type='button' onClick={()=>handleDeleteNote(note._id)}>DELETE</button>
-            <button type='button' onClick={()=>handleMoodChange(note.title, note._id)}>Edit</button> 
+          notes.map((note, index) => 
+          <li key={index} className='flex items-center justify-between my-2'>
+            <p className=' font-semibold'>{note.title}</p> 
+            <div className='flex gap-2'>
+              <button type='button' onClick={()=>handleDeleteNote(note._id)}
+              className='text-white bg-red-500 border rounded-sm py-2 px-4 text-sm'>Delete</button>
+            <button type='button' onClick={()=>handleMoodChange(note.title, note._id)}
+              className='text-white bg-blue-500 border rounded-sm py-2 px-4 text-sm'>Edit</button>
+            </div>
           </li>)
         }
       </ul>
       <form onSubmit={submitHandler}>
-        <input type='text' value={msg} onChange={(e) => setMsg(e.target.value)}></input>
-        <button type='submit'>{editMode ? "Update" : "Create"}</button>
+        <input type='text' value={msg} onChange={(e) => setMsg(e.target.value)}
+        className='border border-gray-300 rounded-md p-2 mr-2.5'></input>
+        <button type='submit' className='text-white bg-purple-500 border rounded-sm py-2 px-4'>{editMode ? "Update" : "Create"}</button>
       </form>
     </div>
   )
